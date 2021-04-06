@@ -7,9 +7,10 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, purple, white);
-        
+    background-image: 
+   url("https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");       
 }
+
 .calculator-grid {
     display: grid;
     justify-content: center;
@@ -53,3 +54,6 @@ body {
     color: white;
     font-size: 2.5rem;
 }
+
+
+/ background: linear-gradient(to right, purple, white);
