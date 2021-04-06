@@ -1,0 +1,10 @@
+body{
+    background-color:black;
+}
+
+.calculatorWrapper{
+    max-width:900px;
+    margin:0 auto;
+    background:white;
+    min-height:200px;
+}
