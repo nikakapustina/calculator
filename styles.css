@@ -11,13 +11,19 @@ body {
    url("https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");       
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .calculator-grid {
     display: grid;
     justify-content: center;
-    align-content: center;    
+    align-content: center;     
     min-height: 100vh;
     grid-template-columns: repeat(4, 75px);
     grid-template-rows: minmax(120px, auto) repeat(5, 75px);
+    border-radius: 7px;
+    box-shadow: 0 13px 14px rgba(221, 10, 10, 0.2);
 }
 
 .calculator-grid > button {
@@ -25,11 +31,11 @@ body {
     font-size: 1.5rem;
     border: 1px solid white;
     outline: none;
-    background-color:whitesmoke;
+    background-color:rgb(245, 238, 238);
 }
 
 .calculator-grid > button:hover {
-    background-color:  lightgray;
+    background-color:  rgb(118, 145, 103);
 }
 
 .span-two {
