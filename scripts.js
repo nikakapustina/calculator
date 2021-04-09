@@ -76,6 +76,8 @@ function preview(event){
     objPreview.value = strMessage;
 }
 
+//Alex is cool
+
 function clear(event){
     number1 = "";
     number2 = "";
