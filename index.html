@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./scripts.js"></script>
-</head>
+    </head>
 <body> 
    <div class="calculator-grid">
          <div class="output">
-            <div class="previous-operand"></div>
+            <div class="previous-operand">34</div>
             <div class="current-operand"></div>         
             </div>
+
         <button class="span-two clear">AC</button>
         <button class="span-two operator">+</button>
         <button class="number">7</button>
@@ -29,7 +29,18 @@
         <button class="operator">/</button>
         <button class="decimal">.</button>
         <button class="number">0</button>
-        <button class="span-two">=</button>
+        <button class="span-two equals">=</button>
     </div>
+
+       <div>
+    <input class="maths" />
+    </div>
+
+    <div>
+    <input class="preview" />
+    </div>
+     <div class="clearfix"></div>
+     
+    <script src="./scripts.js"></script>
 </body>
 </html>
