@@ -8,12 +8,16 @@ var arrOperators = document.querySelectorAll(".operator");
 // console.log(arrOperators);
 var objPreview = document.querySelector(".previous-operand");
 // console.log(objPreview);
+var objPrevious = document.querySelector(".previous");
+// console.log(objPrevious);
 var objMaths = document.querySelector(".current-operand");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
 // console.log(objClear);
 var objEquals = document.querySelector(".equals");
 // console.log(objEquals);
+var objError = document.querySelector(".error");
+// console.log(objError);
 
 
 /*----- Event Listeners -----*/
@@ -55,11 +59,19 @@ function preview(event){
 
             blnEquals=false;
         }
+        if(number2){
+            number1 = calculator(number1, number2, operator);
+            number2 = "";
+            objMaths.innerHTML = "";
+        }
+        
+        
         if(number1){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
         } else {
-            console.log('You cannot set an operator without a number being set');
+            objError.innerHTML = 'You cannot set an operator without a number being set';
+            return;
         }
     } else {
         if (blnEquals){
@@ -97,6 +109,8 @@ function clear(event){
 
 function equals(){
     var sum = calculator(number1,number2,operator);
+    objMaths.innerHTML = "";
+    objPrevious.innerHTML = objPreview.innerHTML;
     objMaths.innerHTML = sum;
     blnEquals = true;
     number1 = sum;
@@ -113,18 +127,23 @@ function calculator(number1,number2,operator){
     //if number1 is not a number
     if(!isValidNumber(number1)){
         //end the function here and pass the message below.
-        return 'Argument 1 must be a number';
+        objError.innerHTML = 'Argument 1 must be a number';
+        return;
     }
     //if number 2 is not a number
     if(!isValidNumber(number2)){
         //end the function here and pass the message below.
-        return 'Argument 2 must be a number';
+        objError.innerHTML = 'Argument 2 must be a number';
+        return;
     }
     // if the operator does not equal + - * / %
     if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
         //end the function here and pass the message below.
-        return 'Argument 3 must be an arithmatic operator';
+        objError.innerHTML = 'Argument 3 must be an arithmatic operator';
+        return;
     }
+
+
     //all fo the validation has passed so we need to do maths
     var sum;
     //based on the operator passed in argument 3 we will do a different sum
