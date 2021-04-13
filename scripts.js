@@ -1,14 +1,14 @@
 /*----- Variables -----*/
-let number1 = "", number2 = "", operator = "";
+let number1 = "", number2 = "", operator = "", blnEquals=false;
 
 /*---- Selecting elements ----*/
 var arrNumbers = document.querySelectorAll(".number");
 // console.log(arrNumbers);
 var arrOperators = document.querySelectorAll(".operator");
 // console.log(arrOperators);
-var objPreview = document.querySelector(".preview");
+var objPreview = document.querySelector(".previous-operand");
 // console.log(objPreview);
-var objMaths = document.querySelector(".maths");
+var objMaths = document.querySelector(".current-operand");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
 // console.log(objClear);
@@ -32,6 +32,7 @@ objEquals.addEventListener("click", equals);
 
 /*----- Functions -----*/
 function preview(event){
+    console.log(blnEquals)
     // console.log(event.target.innerHTML);
     var currentItem = event.target.innerHTML;
     var dataType;
@@ -50,6 +51,10 @@ function preview(event){
     // console.log(currentItem);
     console.log(dataType);
     if(dataType == 'operator'){
+        if (blnEquals){
+
+            blnEquals=false
+        }
         if(number1){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
@@ -57,6 +62,10 @@ function preview(event){
             console.log('You cannot set an operator without a number being set');
         }
     } else {
+        if (blnEquals){
+            number1 = ""
+            blnEquals=false
+        }
         if(operator){
             if(number2){
                 number2 += currentItem;
@@ -73,23 +82,26 @@ function preview(event){
             strMessage = number1;
         }
     }
-    objPreview.value = strMessage;
+    objPreview.innerHTML = strMessage;
 }
 
-//Alex is cool
 
 function clear(event){
     number1 = "";
     number2 = "";
     operator = "";
-    objPreview.value = "";
-    objMaths.value = "";
+    objPreview.innerHTML = "";
+    objMaths.innerHTML = "";
 }
 
 
 function equals(){
     var sum = calculator(number1,number2,operator);
-    objMaths.value = sum;
+    objMaths.innerHTML = sum;
+    blnEquals = true;
+    number1 = sum;
+    number2 = "";
+    operator = "";
 }
 
 //Adding a validation function for the numbers
