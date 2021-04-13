@@ -53,7 +53,7 @@ function preview(event){
     if(dataType == 'operator'){
         if (blnEquals){
 
-            blnEquals=false
+            blnEquals=false;
         }
         if(number1){
             operator = currentItem;
@@ -63,8 +63,8 @@ function preview(event){
         }
     } else {
         if (blnEquals){
-            number1 = ""
-            blnEquals=false
+            number1 = "";
+            blnEquals=false;
         }
         if(operator){
             if(number2){
