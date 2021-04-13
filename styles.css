@@ -66,3 +66,7 @@ body {
 
 
 // background: linear-gradient(to right, purple, white);
+
+.error{
+    color: red;
+}
