@@ -1,11 +1,16 @@
-/*----- Variables -----*/
+/*-----Global Variables -----*/
+//set on the top, with blank values
 let number1 = "", number2 = "", operator = "", blnEquals=false;
 
 /*---- Selecting elements ----*/
-var arrNumbers = document.querySelectorAll(".number");
+
+//querySelectorAll -is a function
+var arrNumbers = document.querySelectorAll(".number"); //can hold more than one value at a time number1, number2 etc
+//selects the operator elements
 // console.log(arrNumbers);
-var arrOperators = document.querySelectorAll(".operator");
-// console.log(arrOperators);
+var arrOperators = document.querySelectorAll(".operator"); //all of the items that match operator addition, division etc
+// console.log(arrOperators); 
+//object is a single item
 var objPreview = document.querySelector(".previous-operand");
 // console.log(objPreview);
 var objPrevious = document.querySelector(".previous");
@@ -23,6 +28,8 @@ var objDecimal = document.querySelector(".decimal");
 
 
 /*----- Event Listeners -----*/
+
+//numbers and operatoors preview
 for(counter = 0; counter < arrNumbers.length; counter++){
     // console.log(arrNumbers[counter]);
     objNumber = arrNumbers[counter];
@@ -33,17 +40,23 @@ for(counter = 0; counter < arrOperators.length; counter++){
     objOperator = arrOperators[counter];
     objOperator.addEventListener("click", preview);
 }
+//calls the clear function
 objClear.addEventListener("click", clear);
+//calls the equals function
 objEquals.addEventListener("click", equals);
+//calls the preview function
 objDecimal.addEventListener("click", preview);
 
+//to make calculator do the maths
 /*----- Functions -----*/
+
 function preview(event){
     console.log(blnEquals)
     // console.log(event.target.innerHTML);
     var currentItem = event.target.innerHTML;
     var dataType;
-    var strMessage;
+    var strMessage; 
+    // if operator been selected the dataType variable is set to operator.
     switch(currentItem){
         case '*':
         case '/':
@@ -57,16 +70,21 @@ function preview(event){
     }
     // console.log(currentItem);
     // console.log(dataType);
+
     //if the data type equals operator
     console.log(dataType);
     if(dataType == 'operator'){
+
         if (blnEquals){
 
             blnEquals=false;
         }
+        //if there is a number 2
+        //number 1is set to the calculator function arguments
         if(number2){
             number1 = calculator(number1, number2, operator);
             number2 = "";
+            //the maths box is empty
             objMaths.innerHTML = "";
         }
         
@@ -75,21 +93,27 @@ function preview(event){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
         } else {
+        //error message if starts with operator
             objError.innerHTML = 'You cannot set an operator without a number being set';
             return;
         }
     } else {
+        //if equals was used recently, unset the equals boolean
         if (blnEquals){
             number1 = "";
             blnEquals=false;
         }
+        //if it is an operator
         if(operator){
             if(number2){
                 if(currentItem == '.'){
+                    //if the currentItem pressed is equal to decimal
                     if(!hasDecimal(number1)){
                         number2 += currentItem;
                     }
                 } else {
+
+                //set number2 equals to the currentItem
                     number2 += currentItem;
                 }
             } else {
@@ -124,22 +148,23 @@ function preview(event){
     objPreview.innerHTML = strMessage;
 }
 
-
+//clear when operator presses AC
 function clear(event){
-    number1 = "";
+    number1 = ""; //resets the value completely
     number2 = "";
     operator = "";
-    objPreview.innerHTML = "";
+    objPreview.innerHTML = ""; //individual inputs, removes the value
     objMaths.innerHTML = "";
     objPrevious.innerHTML = "";
-    objError.innerHTML = "";
+    objError.innerHTML = ""; // a P tag
 }
 
 
 function equals(){
+    //if there is a sum
     var sum = calculator(number1,number2,operator);
-    if(sum){    
-        objMaths.innerHTML = "";
+    if(sum){  
+        objMaths.innerHTML = ""; //the maths element box will be empty  
         objPrevious.innerHTML = objPreview.innerHTML;
         objMaths.innerHTML = sum;
         blnEquals = true;
@@ -148,7 +173,7 @@ function equals(){
         operator = "";
     }
 }
-
+//indexOf returns -1 if it find the string passed to the argument
 function hasDecimal(number){
     if(number.indexOf('.') !== -1){
     objError.innerHTML = 'You can only have one decimal place per number';
