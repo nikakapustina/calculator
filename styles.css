@@ -1,3 +1,4 @@
+ 
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -65,8 +66,11 @@ body {
 }
 
 
-// background: linear-gradient(to right, purple, white);
+/*-- background: linear-gradient(to right, purple, white); --*/
 
 .error{
     color: red;
+    border: 1px solid red;
+    background-color: #fca39d;
+    border-radius: 5px;
 }
